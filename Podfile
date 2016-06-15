@@ -7,5 +7,6 @@ target 'flick' do
 
   # Pods for flick
 	pod 'AFNetworking'
+	pod 'MBProgressHUD'
 
 end

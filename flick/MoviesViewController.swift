@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -33,7 +34,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegate: nil,
             delegateQueue: NSOperationQueue.mainQueue()
         )
-        
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request,
             completionHandler: { (dataOrNil, response, error) in
             if let data = dataOrNil {
@@ -42,6 +44,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 print("response: \(responseDictionary)")
                 self.movies = responseDictionary["results"] as! [NSDictionary]
                 self.tableView.reloadData()
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
             }
           }
         })
