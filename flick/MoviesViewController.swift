@@ -49,6 +49,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
           }
         })
         task.resume()
+        
+        // Initialize a UIRefreshControl
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +87,38 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.posterView.setImageWithURL(imageURL!)
         print("row\(indexPath.row)")
         return cell
+    }
+    // Makes a network request to get updated data
+    // Updates the tableView with the new data
+    // Hides the RefreshControl
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        
+        // ... Create the NSURLRequest (myRequest) ...
+        let apiKey = "a49de16b4f06f894f89cc75373d53be0"
+        //Need to get your own key for assignment
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let request = NSURLRequest(
+            URL: url!,
+            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+            timeoutInterval: 10)
+        
+        let session = NSURLSession(
+            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+            delegate: nil,
+            delegateQueue: NSOperationQueue.mainQueue()
+        )
+        
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+                                                                        
+          // ... Use the new data to update the data source ...
+                                                                        
+          // Reload the tableView now that there is new data
+          self.tableView.reloadData()
+                                                                        
+          // Tell the refreshControl to stop spinning
+          refreshControl.endRefreshing()
+        });
+        task.resume()
     }
 
     /*
