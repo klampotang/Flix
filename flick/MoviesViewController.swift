@@ -40,7 +40,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let data = dataOrNil {
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                     data, options:[]) as? NSDictionary {
-                    print("response: \(responseDictionary)")
                     self.movies = responseDictionary["results"] as! [NSDictionary]
                     self.tableView.reloadData()
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
@@ -134,12 +133,4 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
      */
     
     
-}
-
-public extension UIView {
-    func fadeIn(duration duration: NSTimeInterval = 1.0) {
-        UIView.animateWithDuration(duration, animations: {
-            self.alpha = 1.0
-        })
-    }
 }
