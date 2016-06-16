@@ -19,12 +19,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         self.networkErrorLabel.hidden = true
-
+        
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         // Do any additional setup after loading the view.
-        
+        /*
         let apiKey = "a49de16b4f06f894f89cc75373d53be0"
         //Need to get your own key for assignment
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
@@ -37,10 +37,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
             delegate: nil,
             delegateQueue: NSOperationQueue.mainQueue()
-        )
+        )*/
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
-        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
+        /*let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
             if dataOrNil != nil {
                 let data = dataOrNil
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
@@ -57,8 +57,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 self.networkErrorLabel.hidden = false
             }
         })
-        task.resume()
+        task.resume()*/
         
+        getData(1, refreshControl: nil)
         // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -103,7 +104,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Makes a network request to get updated data
     // Updates the tableView with the new data
     // Hides the RefreshControl
-    func refreshControlAction(refreshControl: UIRefreshControl) {
+    
+    func getData(type: Int, refreshControl: UIRefreshControl?) {
         
         // ... Create the NSURLRequest (myRequest) ...
         let apiKey = "a49de16b4f06f894f89cc75373d53be0"
@@ -120,7 +122,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             delegateQueue: NSOperationQueue.mainQueue()
         )
         
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
             
             // ... Use the new data to update the data source ...
             
@@ -128,20 +130,35 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
             
             // Tell the refreshControl to stop spinning
-            refreshControl.endRefreshing()
-        });
+            if(type == 1)
+            {
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+            }
+            else if(type == 0)
+            {
+                refreshControl!.endRefreshing()
+            }
+            if dataOrNil != nil {
+                let data = dataOrNil
+                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
+                    data!, options:[]) as? NSDictionary {
+                    self.movies = responseDictionary["results"] as! [NSDictionary]
+                    self.tableView.reloadData()
+                }
+            }
+            else //If there's no data
+            {
+                self.networkErrorLabel.hidden = false
+            }
+            
+        })
         task.resume()
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func refreshControlAction(refreshControl:UIRefreshControl)
+    {
+        getData(0, refreshControl: refreshControl)
+    }
+ 
     
     
 }
