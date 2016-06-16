@@ -48,6 +48,21 @@ class CollectionsViewController: UIViewController, UICollectionViewDataSource {
         
         return cell
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let vc = segue.destinationViewController as! DetailViewController
+        let indexPath1 = collectionsView.indexPathForCell(sender as! MovieCollectionCell)
+        let post = moviesColl![indexPath1!.row]
+        if let photos = post.valueForKeyPath("photos") as? [NSDictionary] {
+            let imageUrlString = photos[0].valueForKeyPath("original_size.url") as? String
+            if let imageUrl = NSURL(string: imageUrlString!) {
+                vc.imageURLViaSegue = imageUrlString!
+            } else {
+                print("No photo")
+            }
+        } else {
+            print("no photos")
+        }
+    }
     
     func getData()
     {
