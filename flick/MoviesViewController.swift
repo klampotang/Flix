@@ -23,43 +23,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view.
-        /*
-        let apiKey = "a49de16b4f06f894f89cc75373d53be0"
-        //Need to get your own key for assignment
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            URL: url!,
-            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-        
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )*/
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
-        /*let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-            if dataOrNil != nil {
-                let data = dataOrNil
-                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                    data!, options:[]) as? NSDictionary {
-                    self.movies = responseDictionary["results"] as! [NSDictionary]
-                    self.tableView.reloadData()
-                   
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
-                }
-          
-            }
-            else //If there's no data
-            {
-                self.networkErrorLabel.hidden = false
-            }
-        })
-        task.resume()*/
-        
         getData(1, refreshControl: nil)
+        
         // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -82,9 +49,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
-        
-        
-        
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
@@ -124,14 +88,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
             
-            // ... Use the new data to update the data source ...
-            
-            // Reload the tableView now that there is new data
             self.tableView.reloadData()
             
-            // Tell the refreshControl to stop spinning
             if(type == 1)
             {
+                // Tell the refreshControl to stop spinning
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
             }
             else if(type == 0)
@@ -142,7 +103,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 let data = dataOrNil
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                     data!, options:[]) as? NSDictionary {
-                    self.movies = responseDictionary["results"] as! [NSDictionary]
+                    self.movies = responseDictionary["results"] as? [NSDictionary]
                     self.tableView.reloadData()
                 }
             }
@@ -150,7 +111,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             {
                 self.networkErrorLabel.hidden = false
             }
-            
         })
         task.resume()
     }
@@ -158,7 +118,4 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     {
         getData(0, refreshControl: refreshControl)
     }
- 
-    
-    
 }
