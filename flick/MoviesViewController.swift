@@ -37,13 +37,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
         let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-            if let data = dataOrNil {
+            if dataOrNil != nil {
+                let data = dataOrNil
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
-                    data, options:[]) as? NSDictionary {
+                    data!, options:[]) as? NSDictionary {
                     self.movies = responseDictionary["results"] as! [NSDictionary]
                     self.tableView.reloadData()
+                   
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
                 }
+          
+            }
+            else //If there's no data
+            {
+                
+                print("no data :'(")
             }
         })
         task.resume()
