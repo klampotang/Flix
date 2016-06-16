@@ -55,7 +55,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             else //If there's no data
             {
                 self.networkErrorLabel.hidden = false
-                print("no data :'(")
             }
         })
         task.resume()
