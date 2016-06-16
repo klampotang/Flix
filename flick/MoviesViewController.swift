@@ -12,10 +12,14 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var networkErrorLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     var movies:[NSDictionary]?
     
     override func viewDidLoad() {
+        self.networkErrorLabel.hidden = true
+
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
@@ -50,7 +54,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
             else //If there's no data
             {
-                
+                self.networkErrorLabel.hidden = false
                 print("no data :'(")
             }
         })
