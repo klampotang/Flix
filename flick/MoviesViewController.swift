@@ -49,7 +49,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        //FIX
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         if(indexPath.row%2 == 0)
@@ -135,4 +138,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     {
         getData(0, refreshControl: refreshControl)
     }
+    
 }

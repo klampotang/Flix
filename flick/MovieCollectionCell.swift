@@ -13,4 +13,5 @@ class MovieCollectionCell: UICollectionViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     
     
+    
 }
