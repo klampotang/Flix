@@ -141,12 +141,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.18433424779999999" green="0.26884192369999999" blue="0.28782051279999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="network error :'(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GOc-Q7-loF">
+                                <label key="tableHeaderView" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NETWORK ERROR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GOc-Q7-loF">
                                     <rect key="frame" x="0.0" y="64" width="375" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.73624712968514006" green="0.74727833147699796" blue="0.80374672774869116" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.3130063304795474" green="0.4396233974358974" blue="0.26803561959547606" alpha="0.29811422413793104" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.59839250649999998" green="0.21879774890000001" blue="0.29685170500000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.12971449239999999" green="0.29238782050000001" blue="0.1192070789" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
