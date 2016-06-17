@@ -27,17 +27,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "Playing.png")
 
         
+        let popularNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavigationController") as! UINavigationController
+        let popularViewController = popularNavigationController.topViewController as! MoviesViewController
+        popularViewController.endpoint = "popular"
+        popularNavigationController.tabBarItem.title = "Popular"
+        popularNavigationController.tabBarItem.image = UIImage(named: "Popular.png")
+        
+        
         let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavigationController") as! UINavigationController
         let topRatedViewController = topRatedNavigationController.topViewController as! MoviesViewController
         topRatedViewController.endpoint = "top_rated"
-        topRatedNavigationController.tabBarItem.title = "Popular"
-        topRatedNavigationController.tabBarItem.image = UIImage(named: "Popular.png")
+        topRatedNavigationController.tabBarItem.title = "Top Rated"
+        topRatedNavigationController.tabBarItem.image = UIImage(named: "TopRated.png")
+        
+        let upcomingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MoviesNavigationController") as! UINavigationController
+        let upcomingViewController = upcomingNavigationController.topViewController as! MoviesViewController
+        upcomingViewController.endpoint = "upcoming"
+        upcomingNavigationController.tabBarItem.title = "Upcoming"
+        upcomingNavigationController.tabBarItem.image = UIImage(named: "Upcoming.png")
+        
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        tabBarController.viewControllers = [nowPlayingNavigationController, popularNavigationController, topRatedNavigationController, upcomingNavigationController]
         
-        tabBarController.tabBar.backgroundColor = UIColor.blackColor()
-        tabBarController.tabBar.tintColor = UIColor.whiteColor()
+        tabBarController.tabBar.tintColor = UIColor.blackColor()
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
