@@ -25,6 +25,18 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
+        
+        //create a CABasicAnimation that fades from 0 to 1 opacity over 3 seconds
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 0.0
+        fadeAnimation.toValue = 1.0
+        fadeAnimation.duration = 3.0
+        
+        
+        // set the CAKeyframeAnimation to go from 10% to 100% scale
+        scaleAnimation.values = [NSValue(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 1)), NSValue(CATransform3D: CATransform3DMakeScale(1, 1, 1))]
+        
         let completeString = "http://image.tmdb.org/t/p/w500"+imageURLViaSegue
         let imageUrl = NSURL(string: completeString)
         
@@ -33,6 +45,15 @@ class DetailViewController: UIViewController {
         overviewLabel.text = overviewViaSegue
         titleLabel.text = titleViaSegue
         releaseDateLabel.text = "Release Date: \(releasedateViaSegue) "
+        
+        // specify and "Ease Out" timing function
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        // set the duration of the animation for 3 seconds
+        scaleAnimation.duration = 3
+        
+        // add both animations to the Label
+        titleLabel.layer.addAnimation(scaleAnimation, forKey: "transform")
+        titleLabel.layer.addAnimation(fadeAnimation, forKey: "opacity")
     }
 
     override func didReceiveMemoryWarning() {
