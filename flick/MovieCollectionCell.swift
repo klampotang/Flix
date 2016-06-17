@@ -11,4 +11,6 @@ import UIKit
 class MovieCollectionCell: UICollectionViewCell {
     @IBOutlet weak var collectionCellImage: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
+    
+    
 }

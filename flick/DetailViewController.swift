@@ -17,16 +17,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailImageView: UIImageView!
     
     var imageURLViaSegue = ""
+    var titleViaSegue = ""
+    var releasedateViaSegue = ""
+    var overviewViaSegue = ""
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        let imageUrl = NSURL(string: imageURLViaSegue)
+        super.viewDidLoad()
+        let completeString = "http://image.tmdb.org/t/p/w500"+imageURLViaSegue
+        let imageUrl = NSURL(string: completeString)
+        
         detailImageView.setImageWithURL(imageUrl!)
         
-        
-        
+        overviewLabel.text = overviewViaSegue
+        titleLabel.text = titleViaSegue
+        releaseDateLabel.text = "Release Date: \(releasedateViaSegue) "
     }
 
     override func didReceiveMemoryWarning() {

@@ -49,6 +49,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
+        if(indexPath.row%2 == 0)
+        {
+            cell.backgroundColor = UIColorFromHex(0xF1F7EE, alpha: 1)
+            
+        } else {
+            cell.backgroundColor = UIColorFromHex(0xE0EDC5, alpha:1)
+        }
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
@@ -113,6 +120,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
         })
         task.resume()
+    }
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
     func refreshControlAction(refreshControl:UIRefreshControl)
     {

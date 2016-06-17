@@ -16,16 +16,26 @@ class CollectionsViewController: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionsView.backgroundColor = UIColorFromHex(0x92AA83, alpha:1)
+        
         collectionsView.dataSource = self
         getData()
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    }
+
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let moviesColl = moviesColl {
@@ -45,23 +55,21 @@ class CollectionsViewController: UIViewController, UICollectionViewDataSource {
         let rating = movie["vote_average"] as! Int
         cell.collectionCellImage.setImageWithURL(imageURL!)
         cell.ratingLabel.text = "Rating: \(rating)/10"
+        cell.backgroundColor = UIColorFromHex(0xB0BEA9, alpha:1)
         
         return cell
     }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let vc = segue.destinationViewController as! DetailViewController
         let indexPath1 = collectionsView.indexPathForCell(sender as! MovieCollectionCell)
-        let post = moviesColl![indexPath1!.row]
-        if let photos = post.valueForKeyPath("photos") as? [NSDictionary] {
-            let imageUrlString = photos[0].valueForKeyPath("original_size.url") as? String
-            if let imageUrl = NSURL(string: imageUrlString!) {
-                vc.imageURLViaSegue = imageUrlString!
-            } else {
-                print("No photo")
-            }
-        } else {
-            print("no photos")
-        }
+        let movie = moviesColl![indexPath1!.row]
+        let photoURL = movie.valueForKeyPath("poster_path") as? String
+        vc.imageURLViaSegue = photoURL!
+        
+        vc.overviewViaSegue = (movie.valueForKey("overview") as? String)!
+        vc.titleViaSegue = (movie.valueForKey("title") as? String)!
+        vc.releasedateViaSegue = (movie.valueForKey("release_date") as? String)!
     }
     
     func getData()
