@@ -11,7 +11,6 @@
 		8886A9E01D1356AA008985E9 /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886A9DF1D1356AA008985E9 /* CollectionsViewController.swift */; };
 		8886A9E41D1357F1008985E9 /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886A9E31D1357F1008985E9 /* MovieCollectionCell.swift */; };
 		8886A9E61D136B62008985E9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886A9E51D136B62008985E9 /* DetailViewController.swift */; };
-		8886A9E81D13D22A008985E9 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886A9E71D13D22A008985E9 /* NavigationControllerDelegate.swift */; };
 		88E0BEC61D11F7DB00C37557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E0BEC51D11F7DB00C37557 /* AppDelegate.swift */; };
 		88E0BECB1D11F7DB00C37557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88E0BEC91D11F7DB00C37557 /* Main.storyboard */; };
 		88E0BECD1D11F7DB00C37557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88E0BECC1D11F7DB00C37557 /* Assets.xcassets */; };
@@ -25,7 +24,6 @@
 		8886A9DF1D1356AA008985E9 /* CollectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		8886A9E31D1357F1008985E9 /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
 		8886A9E51D136B62008985E9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		8886A9E71D13D22A008985E9 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		88E0BEC21D11F7DB00C37557 /* flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E0BEC51D11F7DB00C37557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88E0BECA1D11F7DB00C37557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				8886A9DF1D1356AA008985E9 /* CollectionsViewController.swift */,
 				8886A9E31D1357F1008985E9 /* MovieCollectionCell.swift */,
 				8886A9E51D136B62008985E9 /* DetailViewController.swift */,
-				8886A9E71D13D22A008985E9 /* NavigationControllerDelegate.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -247,7 +244,6 @@
 				88E0BEC61D11F7DB00C37557 /* AppDelegate.swift in Sources */,
 				8886A9E61D136B62008985E9 /* DetailViewController.swift in Sources */,
 				88E0BED81D11F80900C37557 /* MoviesViewController.swift in Sources */,
-				8886A9E81D13D22A008985E9 /* NavigationControllerDelegate.swift in Sources */,
 				88E0BEDB1D12010300C37557 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

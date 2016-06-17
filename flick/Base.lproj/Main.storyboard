@@ -60,12 +60,13 @@
                     <navigationItem key="navigationItem" title="Click for More" id="UNk-FK-iaR"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="backArrow" destination="UNk-FK-iaR" id="t34-za-CO4"/>
                         <outlet property="collectionsView" destination="u4M-KG-ZeQ" id="alz-jL-fds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dll-Qc-nPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165.5" y="-274.5"/>
+            <point key="canvasLocation" x="1116.5" y="40.5"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Otd-qW-vfj">
@@ -136,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="145" sectionHeaderHeight="28" sectionFooterHeight="28" id="GgI-7A-8Ti">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="599"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.18433424779999999" green="0.26884192369999999" blue="0.28782051279999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -189,10 +190,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Playing" id="qdP-Kl-zhi">
-                        <barButtonItem key="leftBarButtonItem" title="..." id="GF2-6w-wZO">
-                            <color key="tintColor" red="0.54625683530000002" green="0.78559567809999997" blue="0.84041639400000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="tl1-Vc-VL4">
                             <connections>
-                                <segue destination="6OK-IP-GVL" kind="push" identifier="PushSegue" id="UAB-Pb-CyE"/>
+                                <segue destination="6OK-IP-GVL" kind="push" id="YkY-zq-6D3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -221,7 +221,6 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D9B-q6-DM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="b8b-Bg-tKX" customClass="NavigationControllerDelegate" customModule="flick" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="130" y="288"/>
         </scene>

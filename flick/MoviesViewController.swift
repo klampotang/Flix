@@ -12,10 +12,13 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var buttonYO: UIButton!
     @IBOutlet weak var networkErrorLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var movies:[NSDictionary]?
+    
+
     
     override func viewDidLoad() {
         self.networkErrorLabel.hidden = true

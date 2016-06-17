@@ -12,6 +12,7 @@ class CollectionsViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionsView: UICollectionView!
     
+    @IBOutlet weak var backArrow: UINavigationItem!
     var moviesColl:[NSDictionary]?
     
     override func viewDidLoad() {
