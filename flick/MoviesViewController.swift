@@ -17,7 +17,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     var movies:[NSDictionary]?
     var textValue = "title"
-
+    var endpoint: String!
     
     override func viewDidLoad() {
         self.networkErrorLabel.hidden = true
@@ -120,7 +120,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // ... Create the NSURLRequest (myRequest) ...
         let apiKey = "a49de16b4f06f894f89cc75373d53be0"
         //Need to get your own key for assignment
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = NSURLRequest(
             URL: url!,
             cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,

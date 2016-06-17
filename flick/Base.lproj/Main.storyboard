@@ -210,7 +210,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zD7-D4-KvY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JHc-z3-fi3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="JHc-z3-fi3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oku-vu-NLx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
