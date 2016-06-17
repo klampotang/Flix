@@ -12,17 +12,17 @@ import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var buttonYO: UIButton!
     @IBOutlet weak var networkErrorLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var movies:[NSDictionary]?
-    
+    var textValue = "title"
 
     
     override func viewDidLoad() {
         self.networkErrorLabel.hidden = true
-        
+        //
+        self.tableView.allowsMultipleSelection = true;
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
@@ -51,8 +51,34 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
-        //FIX
+        
+        let movie = movies![indexPath.row]
+        let overview = movie["overview"] as! String
+        let title = movie["title"] as! String
+        
+        
+        if(textValue == "title")
+        {
+            cell.titleLabel.text = overview
+            textValue = "overview"
+            print("should change to overview")
+        }
+        else if(textValue == "overview")
+        {
+            cell.titleLabel.text = title
+            textValue = "title"
+            print("should change to title")
+        }
+        let baseURL = "http://image.tmdb.org/t/p/w500"
+        let posterPath = movie["poster_path"] as! String
+        let imageURL = NSURL(string: baseURL+posterPath)
+        
+        cell.posterView.setImageWithURL(imageURL!)
+        cell.setSelected(false, animated: false)
+        
+
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         if(indexPath.row%2 == 0)
@@ -62,11 +88,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             cell.backgroundColor = UIColorFromHex(0xE0EDC5, alpha:1)
         }
+        //create a CABasicAnimation that fades from 0 to 1 opacity over 3 seconds
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 0.0
+        fadeAnimation.toValue = 1.0
+        fadeAnimation.duration = 3.0
+        // create a CAKeyframeAnimation with a keyPath of "transform"
+        var scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
+        
+        // set the CAKeyframeAnimation to go from 10% to 100% scale
+        scaleAnimation.values = [NSValue(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 1)), NSValue(CATransform3D: CATransform3DMakeScale(1, 1, 1))]
+        // specify and "Ease Out" timing function
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        // set the duration of the animation for 3 seconds
+        scaleAnimation.duration = 3
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        
+            
+            // add both animations to the Label
+        cell.titleLabel.layer.addAnimation(scaleAnimation, forKey: "transform")
+        cell.titleLabel.layer.addAnimation(fadeAnimation, forKey: "opacity")
+        
+
         
         let baseURL = "http://image.tmdb.org/t/p/w500"
         let posterPath = movie["poster_path"] as! String
