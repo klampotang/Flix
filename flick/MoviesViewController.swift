@@ -54,28 +54,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         let movie = movies![indexPath.row]
         let overview = movie["overview"] as! String
-        let title = movie["title"] as! String
-        
-        
-        if(textValue == "title")
-        {
-            cell.titleLabel.text = overview
-            textValue = "overview"
-            print("should change to overview")
-        }
-        else if(textValue == "overview")
-        {
-            cell.titleLabel.text = title
-            textValue = "title"
-            print("should change to title")
-        }
+        cell.titleLabel.hidden = true
+        cell.overviewLabel.text = overview
         let baseURL = "http://image.tmdb.org/t/p/w500"
         let posterPath = movie["poster_path"] as! String
         let imageURL = NSURL(string: baseURL+posterPath)
         
         cell.posterView.setImageWithURL(imageURL!)
         cell.setSelected(false, animated: false)
-        
 
     }
     
@@ -94,7 +80,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         fadeAnimation.toValue = 1.0
         fadeAnimation.duration = 3.0
         // create a CAKeyframeAnimation with a keyPath of "transform"
-        var scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform")
         
         // set the CAKeyframeAnimation to go from 10% to 100% scale
         scaleAnimation.values = [NSValue(CATransform3D: CATransform3DMakeScale(0.1, 0.1, 1)), NSValue(CATransform3D: CATransform3DMakeScale(1, 1, 1))]
@@ -104,12 +90,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         scaleAnimation.duration = 3
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
+        //let overview = movie["overview"] as! String
         cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
+        cell.overviewLabel.text = ""
         
             
-            // add both animations to the Label
+        // add both animations to the Label
         cell.titleLabel.layer.addAnimation(scaleAnimation, forKey: "transform")
         cell.titleLabel.layer.addAnimation(fadeAnimation, forKey: "opacity")
         
