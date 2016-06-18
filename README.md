@@ -51,7 +51,7 @@ Describe any challenges encountered while building the app.
 
 ## Credits
 
-Credut to iconmonstr and The Noun Project for all icons
+Credit to iconmonstr and The Noun Project for all icons
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
