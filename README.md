@@ -31,6 +31,7 @@ The following **additional** features are implemented:
 - [x] Tab bar with 4 different endpoints (Currently playing, top rated, popular, upcoming).
 - [x] Selecting the cell shows the overview.
 - [x] Added animation of the titles.
+- [x] Customized the navigation bar
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
