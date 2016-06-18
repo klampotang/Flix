@@ -34,8 +34,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to embed a Youtube Video in
+2. How to have a text label show up on top of picture
 
 ## Video Walkthrough
 
@@ -51,7 +51,7 @@ Describe any challenges encountered while building the app.
 
 ## Credits
 
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
+Credut to iconmonstr and The Noun Project for all icons
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
