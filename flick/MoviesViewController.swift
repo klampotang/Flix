@@ -146,6 +146,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 refreshControl!.endRefreshing()
             }
             if dataOrNil != nil {
+                self.networkErrorLabel.hidden = true
                 let data = dataOrNil
                 if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(
                     data!, options:[]) as? NSDictionary {
